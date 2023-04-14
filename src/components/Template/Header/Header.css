@@ -1,0 +1,43 @@
+header {
+    background-color: gray;
+    color: white;
+    padding: 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 5rem;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header a.active {
+    text-decoration: underline;
+}
+
+header nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+header button {
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+header button:hover {
+    border-color: darkgray;
+    background-color: darkgray;
+}
