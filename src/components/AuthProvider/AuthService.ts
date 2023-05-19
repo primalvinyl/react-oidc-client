@@ -3,10 +3,10 @@ import { UserManager, Log } from 'oidc-client-ts';
 export default class OauthService {
     UserManager;
     userManagerConfig = {
-        authority: 'https://accounts.google.com',
-        client_id: process.env.CLIENT_ID || '',
-        client_secret: process.env.CLIENT_SECRET || '',
-        scope: 'openid https://www.googleapis.com/auth/contacts.readonly',
+        authority: process.env.AUTH_AUTHORITY || '',
+        client_id: process.env.AUTH_CLIENT_ID || '',
+        client_secret: process.env.AUTH_CLIENT_SECRET || '',
+        scope: process.env.AUTH_SCOPE || '',
         redirect_uri: `${process.env.PUBLIC_URL || ''}/signincallback`,
     };
 
@@ -61,13 +61,13 @@ export default class OauthService {
     // initiates signout flow
     signout = async () => {
         if(this.isAuthenticated()) {
-            sessionStorage.clear();
-            localStorage.clear();
             try {
                 await this.UserManager.revokeTokens();
             } catch {
                 console.error('Error: OIDC signout');
             } finally {
+                sessionStorage.clear();
+                localStorage.clear();
                 window.location.replace(process.env.PUBLIC_URL || '');
             }
         }
